@@ -1,32 +1,80 @@
 .profile{
+width: 880px;
+display: grid;
+grid-template-columns: 120px repeat(3, 1fr);
+grid-template-rows: 120px;
+grid-gap: 30px;
+margin-bottom: 50px;
 
 }
 
 .profile__container-photo{
-
+width: 120px;
 }
 
 .profile__photo{
 border-radius: 100%;
-position: absolute;
+width: 100%;
 }
 
 .profile__info{
-
+display: grid;
+grid-column: 2/4;
+grid-template-columns: repeat(5, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-gap: 16px 18px;
 }
 
 .profile__title{
+grid-column: 1/5;
+margin: 0;
+align-self: end;
+font-size: 42px;
+line-height: 48px;
+}
 
+.profile__subtitle{
+  margin: 0;
+  font-size: 18px;
+  line-height: 100%;
 }
 
 .profile__button{
-
+  background-color: black;
+  border: 0;
+  width: 30px;
+  padding: 0;
+  align-self: end;
 }
 
 .profile__button-edit{
+  grid-column: 5;
+  width: 24px;
+  height: 24px;
+  align-self: end;
+  margin: 0;
+}
 
+.profile__button-edit:hover{
+  opacity: 30%;
 }
 
 .profile__button-add{
+margin: 0;
+border: 0;
+padding: 0;
+background-color: black;
+align-self: center;
 
+}
+
+.profile__button-add_image{
+width: 150px;
+height: 50px;
+background-color: black;
+align-self: center;
+}
+
+.profile__button-add_image:hover{
+opacity: 30%;
 }
