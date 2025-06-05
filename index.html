@@ -11,11 +11,32 @@
 </head>
 <body>
     <div class="page">
+
+
+      <div class="popup">
+        <button class="popup__button popup__button_close"></button>
+        <form action="" class="popup__container">
+          <h2 class="popup__subtitle">Editar perfil</h2>
+
+          <fieldset class="popup__content">
+            <input type="text" class="popup__input popup__input_name" name="name" placeholder="Nombre" required/>
+            <input type="text" class="popup__input popup__input_about" name="about" placeholder="Acerca de mí" required/>
+          </fieldset>
+
+          <fieldset class="popup__content">
+            <button type="submit" class="popup__button_save">Guardar</button>
+          </fieldset>
+        </form>
+      </div>
+
+
+
     <header class="header">
 
       <img src="./images/Vector__Header.svg" alt="Around the U.S." class="header__image">
 
     </header>
+
     <main class="content">
 
       <section class="profile">
@@ -38,6 +59,7 @@
         </button>
 
       </section>
+
 
       <section class="cards">
 
