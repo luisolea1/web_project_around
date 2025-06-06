@@ -1,0 +1,12 @@
+.footer{
+width: 880px;
+align-self: center;
+margin: 67px auto 60px
+}
+
+.footer__text{
+  font-family: "inter-regular", sans-serif;
+  font-size: 18px;
+  color:rgba(84, 84, 84, 1) ;
+  margin: 0;
+}
