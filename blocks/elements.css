@@ -1,0 +1,45 @@
+.elements{
+  width: 880px;
+  display: flex;
+  gap: 21px 17px;
+  flex-wrap: wrap;
+}
+
+.element{
+  width: 282px;
+  height: 361px;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 10px;
+  color: #000000;
+}
+
+.element__image{
+width: 100%;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+}
+
+.element__content{
+  display: flex;
+  justify-content: space-between;
+  max-width: 250px;
+  margin: 21px auto;
+}
+
+.element__place-name{
+  font-family:"inter-black", sans-serif;
+  font-size: 24px;
+  margin: 0 ;
+}
+
+.element__button{
+  background-color: #ffffff;
+}
+
+.element__button-like{
+  border: 0;
+  width: 21px;
+  height: 19px;
+}
+
