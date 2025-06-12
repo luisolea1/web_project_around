@@ -37,6 +37,7 @@ line-height: 48px;
   margin: 0;
   font-size: 18px;
   line-height: 100%;
+  letter-spacing: 0%;
 }
 
 .profile__button{
@@ -45,6 +46,7 @@ line-height: 48px;
   width: 30px;
   padding: 0;
   align-self: end;
+  cursor: pointer;
 }
 
 .profile__button-edit{
@@ -65,7 +67,7 @@ border: 0;
 padding: 0;
 background-color: black;
 align-self: center;
-
+cursor: pointer;
 }
 
 .profile__button-add_image{

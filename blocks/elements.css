@@ -20,26 +20,48 @@ border-top-left-radius: 10px;
 border-top-right-radius: 10px;
 }
 
+
 .element__content{
   display: flex;
   justify-content: space-between;
   max-width: 250px;
-  margin: 21px auto;
+  margin: 21px auto 0;
 }
 
 .element__place-name{
   font-family:"inter-black", sans-serif;
   font-size: 24px;
-  margin: 0 ;
+  height: 30px;
+  width: 240px;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
+
 .element__button{
-  background-color: #ffffff;
+  background-color: transparent;
+  cursor: pointer;
+  width: 21px;
+  height: 19px;
+
+}
+
+.element__button:hover{
+  opacity: 30%;
 }
 
 .element__button-like{
   border: 0;
-  width: 21px;
-  height: 19px;
+  background-image: url(../images/Like__Button.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
+.element__button-like:active{
+  background-image: url(../images/Active__Like-Button.svg);
+
+}
+
 
