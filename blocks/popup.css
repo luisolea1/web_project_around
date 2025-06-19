@@ -66,6 +66,7 @@
   width: 358px;
   border: 0;
   margin-bottom: 30px;
+  padding-bottom: 6px;
   border-bottom: 1px solid #000;
 }
 
@@ -75,4 +76,37 @@
   padding: 10px;
   margin-bottom: 40px;
   color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.popup__button_save:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 585px) {
+
+  .popup__button_close{
+    right: 300px;
+    top: 100px;
+  }
+
+  .popup__container{
+    max-width: 280px;
+  }
+
+  .popup__subtitle{
+    width: 240px;
+    margin: 0 20px;
+  }
+
+  .popup__content{
+    width: 240px;
+  }
+
+  .popup__input{
+    width: 240px;
+  }
+
 }
