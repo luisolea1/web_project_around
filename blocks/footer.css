@@ -25,3 +25,18 @@ margin: 67px auto 60px
   }
 
 }
+
+@media screen and (min-width: 586px) and (max-width: 1020px){
+  .footer{
+    width: 100%;
+    max-width: 880px;
+    margin: 67px 50px 60px;
+    padding: 0 20px;
+  }
+
+  .footer__text{
+    font-size: 18px;
+    line-height: 100%;
+    margin: 0 auto;
+  }
+}

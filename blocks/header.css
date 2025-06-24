@@ -1,7 +1,7 @@
 .header{
 border-bottom: 1px solid rgba(84, 84, 84, 1);
 width: 880px;
-margin: 45px 200px 40px;
+margin: 45px auto 40px;
 }
 
 .header__image{
@@ -21,4 +21,18 @@ margin: 0 0 41px;
     margin: 32px auto 32px 27px ;
   }
 
+}
+
+@media screen and (min-width: 586px) and (max-width: 1020px) {
+  .header{
+    width: 100%;
+    max-width: 880px;
+    margin: 45px auto 40px;
+    padding: 0 20px;
+  }
+
+  .header__image{
+    width: 173px;
+    margin: 0 0 41px;
+  }
 }

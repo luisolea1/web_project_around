@@ -1,8 +1,9 @@
 .elements{
   width: 880px;
-  display: flex;
-  gap: 21px 17px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px 17px;
 }
 
 .element{
@@ -65,23 +66,59 @@ border-top-right-radius: 10px;
 
 @media screen and (min-width: 320px) and (max-width: 585px) {
   .elements{
-    width: 282px;
-    margin: 36px 19px 50px;
+    max-width: calc(100% - 32px); /* Corregido el cálculo */
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    margin: 0 16px 62px;
     padding: 0;
     gap: 20px;
-    justify-self: center;
+    justify-items: center; /* Cambiado de justify-self */
   }
 
   .element{
     width: 100%;
+    max-width: 282px; /* Mantén un máximo */
+    height: auto; /* Cambiado de 100% */
+    margin: 0 auto;
+  }
 
+  .element__image{
+    width: 100%; /* Cambiado de max-width */
+    height: 282px; /* Altura fija para mantener proporción */
+    object-fit: cover; /* Mantiene proporción de imagen */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
   .element__content{
-    max-width: 247 px;
-    margin: 21px auto 0;
+    display: flex;
+    justify-content: space-between; /* Mantén en fila */
+    align-items: center;
+    max-width: calc(100% - 32px);
+    margin: 21px 16px 21px; /* Añade padding bottom */
   }
-
 }
 
+@media screen and (min-width: 586px) and (max-width: 1020px) {
+  .elements{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 300px)); /* Tamaño específico */
+    grid-template-rows: repeat(3, auto);
+    justify-content: center; /* Centra las columnas */
+    gap: 30px 20px; /* Controla el espaciado vertical y horizontal */
+    margin: 0 auto 12px;
+    padding: 0 20px; /* Padding mínimo lateral */
+  }
+
+  .element{
+    width: 100%;
+    height: auto;
+  }
+
+  .element__image{
+    width: 100%;
+    height: 282px;
+    object-fit: cover;
+  }
+}
 
