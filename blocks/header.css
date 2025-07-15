@@ -29,6 +29,7 @@ margin: 0 0 41px;
     max-width: 880px;
     margin: 45px auto 40px;
     padding: 0 20px;
+    box-sizing: border-box;
   }
 
   .header__image{
