@@ -15,9 +15,12 @@
 }
 
 .element__image{
-width: 100%;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
+  width: 100%;
+  height: 282px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: block;
 }
 
 
@@ -53,31 +56,40 @@ border-top-right-radius: 10px;
 }
 
 .element__button-like{
-  border: 0;
+  border: none;
   background-image: url(../images/Like__Button.svg);
   background-size: cover;
   background-repeat: no-repeat;
+
 }
 
-.element__button-like:visited{
+.element__button-like_active{
   background-image: url(../images/Active__Like-Button.svg);
+}
+
+.element__button-delete{
+  border: none;
+  background: url(../images/Delete__Button.svg) no-repeat center center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 585px) {
   .elements{
-    max-width: calc(100% - 32px); /* Corregido el cálculo */
+    max-width: calc(100% - 32px);
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
     margin: 0 16px 62px;
     padding: 0;
     gap: 20px;
-    justify-items: center; /* Cambiado de justify-self */
+    justify-items: center;
   }
 
   .element{
     width: 100%;
-    max-width: 282px; /* Mantén un máximo */
-    height: auto; /* Cambiado de 100% */
+    max-width: 282px;
+    height: auto;
     margin: 0 auto;
   }
 
@@ -101,12 +113,12 @@ border-top-right-radius: 10px;
 @media screen and (min-width: 586px) and (max-width: 1020px) {
   .elements{
     display: grid;
-    grid-template-columns: repeat(2, minmax(280px, 300px)); /* Tamaño específico */
+    grid-template-columns: repeat(2, minmax(280px, 300px));
     grid-template-rows: repeat(3, auto);
-    justify-content: center; /* Centra las columnas */
-    gap: 30px 20px; /* Controla el espaciado vertical y horizontal */
+    justify-content: center;
+    gap: 30px 20px;
     margin: 0 auto 12px;
-    padding: 0 20px; /* Padding mínimo lateral */
+    padding: 0 20px;
   }
 
   .element{
@@ -120,4 +132,6 @@ border-top-right-radius: 10px;
     object-fit: cover;
   }
 }
+
+
 
