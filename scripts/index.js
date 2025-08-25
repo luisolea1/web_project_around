@@ -1,6 +1,5 @@
 
 
-// Esperar a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM cargado"); // Para debugging
 
@@ -61,6 +60,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     deleteButton.addEventListener("click", function() {
       deleteCard(this);
+    });
+
+    // NUEVO: Event listener para abrir imagen ampliada
+    cardImage.addEventListener("click", function() {
+      openImagePopup(cardData.link, cardData.name);
     });
 
     return cardElement;
@@ -189,5 +193,39 @@ document.addEventListener("DOMContentLoaded", function() {
     butAdd.addEventListener("click", openAdd);
     butCloseAdd.addEventListener("click", closeAdd);
     formAdd.addEventListener("submit", addNewCard);
+  }
+
+  // POPUP DE IMAGEN AMPLIADA
+  const popupImage = document.querySelector(".popup_image");
+
+  console.log("Popup imagen:", popupImage); // Para debugging
+
+  if (popupImage) {
+    const butCloseImage = popupImage.querySelector(".popup__button_close");
+    const popupImageElement = popupImage.querySelector(".popup__image");
+    const popupImageCaption = popupImage.querySelector(".popup__image-caption");
+
+    function openImagePopup(imageSrc, imageAlt) {
+      console.log("Abriendo imagen ampliada"); // Para debugging
+      popupImageElement.src = imageSrc;
+      popupImageElement.alt = imageAlt;
+      popupImageCaption.textContent = imageAlt;
+      popupImage.classList.add("popup_opened");
+    }
+
+    function closeImagePopup() {
+      console.log("Cerrando imagen ampliada"); // Para debugging
+      popupImage.classList.remove("popup_opened");
+    }
+
+    // Event listener para cerrar popup de imagen
+    butCloseImage.addEventListener("click", closeImagePopup);
+
+    // Cerrar al hacer clic en el fondo oscuro
+    popupImage.addEventListener("click", function(event) {
+      if (event.target === popupImage) {
+        closeImagePopup();
+      }
+    });
   }
 });
