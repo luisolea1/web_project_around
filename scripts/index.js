@@ -1,7 +1,7 @@
 
 
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("DOM cargado"); // Para debugging
+  console.log("DOM cargado");
 
   // FUNCIONALIDAD DE TARJETAS: Datos iniciales
   const initialCards = [
@@ -31,19 +31,34 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   ];
 
-  // Seleccionar elementos del DOM para tarjetas
+  // Seleccionar elementos del DOM
   const elementsContainer = document.querySelector(".elements");
   const elementTemplate = document.querySelector("#element-template");
 
-  console.log("Contenedor:", elementsContainer); // Para debugging
-  console.log("Template:", elementTemplate); // Para debugging
+  // Elementos del popup unificado
+  const popup = document.querySelector(".popup");
+  const popupContainer = document.querySelector(".popup__container");
+  const popupImages = document.querySelector(".popup__images");
+  const popupCloseButton = document.querySelector(".popup__button_close");
+  const popupTitle = document.querySelector(".popup__subtitle");
+  const popupSaveButton = document.querySelector(".popup__button_save");
+  const popupAddButton = document.querySelector(".popup__button_add");
+  const popupImage = document.querySelector(".popup__image");
+  const popupImageCaption = document.querySelector(".popup__paragraph");
+
+  // Elementos del perfil
+  const profileEditButton = document.querySelector(".profile__button");
+  const profileAddButton = document.querySelector(".profile__button-add");
+  const profileName = document.querySelector(".profile__title");
+  const profileAbout = document.querySelector(".profile__subtitle");
+
+  // Inputs del popup
+  const inputName = document.querySelector(".popup__input_name");
+  const inputAbout = document.querySelector(".popup__input_about");
 
   // Función para crear una tarjeta usando el template
   function createCard(cardData) {
-    // Clonar el contenido del template
     const cardElement = elementTemplate.content.cloneNode(true);
-
-    // Llenar los datos de la tarjeta
     const cardImage = cardElement.querySelector(".element__image");
     const cardTitle = cardElement.querySelector(".element__place-name");
     const likeButton = cardElement.querySelector(".element__button-like");
@@ -53,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
     cardImage.alt = cardData.name;
     cardTitle.textContent = cardData.name;
 
-    // Agregar event listeners
+    // Event listeners
     likeButton.addEventListener("click", function() {
       toggleLike(this);
     });
@@ -62,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
       deleteCard(this);
     });
 
-    // NUEVO: Event listener para abrir imagen ampliada
     cardImage.addEventListener("click", function() {
       openImagePopup(cardData.link, cardData.name);
     });
@@ -71,9 +85,13 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Función para agregar tarjeta al DOM
-  function addCard(cardData) {
+  function addCard(cardData, prepend = false) {
     const cardElement = createCard(cardData);
-    elementsContainer.appendChild(cardElement);
+    if (prepend) {
+      elementsContainer.prepend(cardElement);
+    } else {
+      elementsContainer.appendChild(cardElement);
+    }
   }
 
   // Función para el toggle de like
@@ -84,148 +102,162 @@ document.addEventListener("DOMContentLoaded", function() {
   // Función para eliminar tarjeta
   function deleteCard(button) {
     const card = button.closest(".element");
-
-    // Animación antes de eliminar
     card.style.transform = "scale(0.8)";
     card.style.opacity = "0";
     card.style.transition = "all 0.3s ease";
 
-    // Eliminar después de la animación
     setTimeout(function() {
       card.remove();
     }, 300);
   }
 
+  // Función para abrir popup de edición
+  function openEditPopup() {
+    console.log("Abriendo popup de edición");
+
+    // Configurar el popup para edición
+    popupContainer.style.display = "block";
+    popupImages.style.display = "none";
+    popupSaveButton.style.display = "block";
+    popupAddButton.style.display = "none";
+
+    // Configurar contenido
+    popupTitle.textContent = "Editar perfil";
+    inputName.value = profileName.textContent;
+    inputAbout.value = profileAbout.textContent;
+    inputName.placeholder = "Nombre";
+    inputAbout.placeholder = "Acerca de mí";
+
+    // Abrir popup
+    popup.classList.add("popup_opened");
+  }
+
+  // Función para abrir popup de agregar
+  function openAddPopup() {
+    console.log("Abriendo popup de agregar");
+
+    // Configurar el popup para agregar
+    popupContainer.style.display = "block";
+    popupImages.style.display = "none";
+    popupSaveButton.style.display = "none";
+    popupAddButton.style.display = "block";
+
+    // Configurar contenido
+    popupTitle.textContent = "Nuevo lugar";
+    inputName.value = "";
+    inputAbout.value = "";
+    inputName.placeholder = "Título";
+    inputAbout.placeholder = "Enlace a la imagen";
+
+    // Validar campos inicialmente
+    validateAddButton();
+
+    // Abrir popup
+    popup.classList.add("popup_opened");
+  }
+
+  // Función para abrir popup de imagen
+  function openImagePopup(imageSrc, imageAlt) {
+    console.log("Abriendo imagen ampliada");
+
+    // Configurar el popup para imagen
+    popupContainer.style.display = "none";
+    popupImages.style.display = "flex";
+
+    // Configurar contenido
+    popupImage.src = imageSrc;
+    popupImage.alt = imageAlt;
+    popupImageCaption.textContent = imageAlt;
+
+    // Abrir popup
+    popup.classList.add("popup_opened");
+  }
+
+  // Función para cerrar popup
+  function closePopup() {
+    console.log("Cerrando popup");
+    popup.classList.remove("popup_opened");
+
+    // Limpiar estilos después de cerrar
+    setTimeout(function() {
+      popupContainer.style.display = "none";
+      popupImages.style.display = "none";
+    }, 300);
+  }
+
+  // Función para guardar cambios del perfil
+  function saveProfileChanges(event) {
+    event.preventDefault();
+    console.log("Guardando cambios del perfil");
+
+    profileName.textContent = inputName.value;
+    profileAbout.textContent = inputAbout.value;
+    closePopup();
+  }
+
+  // Función para agregar nueva tarjeta
+  function addNewCard() {
+    console.log("Agregando nueva tarjeta");
+
+    const newCardData = {
+      name: inputName.value,
+      link: inputAbout.value
+    };
+
+    addCard(newCardData, true);
+    closePopup();
+  }
+
+  // Función para validar botón de agregar
+  function validateAddButton() {
+    const isValid = inputName.value.trim() !== "" && inputAbout.value.trim() !== "";
+    popupAddButton.disabled = !isValid;
+  }
+
   // Inicializar las tarjetas
   function initializeCards() {
-    console.log("Inicializando tarjetas..."); // Para debugging
+    console.log("Inicializando tarjetas...");
     initialCards.forEach(function(cardData) {
       addCard(cardData);
     });
   }
 
+  // Event listeners
+  profileEditButton.addEventListener("click", openEditPopup);
+  profileAddButton.addEventListener("click", openAddPopup);
+  popupCloseButton.addEventListener("click", closePopup);
+  popupContainer.addEventListener("submit", saveProfileChanges);
+  popupAddButton.addEventListener("click", addNewCard);
+
+  // Validación en tiempo real para el popup de agregar
+  inputName.addEventListener("input", function() {
+    if (popupAddButton.style.display === "block") {
+      validateAddButton();
+    }
+  });
+
+  inputAbout.addEventListener("input", function() {
+    if (popupAddButton.style.display === "block") {
+      validateAddButton();
+    }
+  });
+
+  // Cerrar popup al hacer clic fuera
+  popup.addEventListener("click", function(event) {
+    if (event.target === popup) {
+      closePopup();
+    }
+  });
+
+  // Prevenir cierre al hacer clic dentro del contenido
+  popupContainer.addEventListener("click", function(event) {
+    event.stopPropagation();
+  });
+
+  popupImages.addEventListener("click", function(event) {
+    event.stopPropagation();
+  });
+
   // Cargar tarjetas iniciales
   initializeCards();
-
-  // POPUP DE EDICIÓN DE PERFIL
-  const butEdit = document.querySelector(".profile__button");
-  const popupEdit = document.querySelector(".popup_edit");
-
-  console.log("Botón editar:", butEdit); // Para debugging
-  console.log("Popup editar:", popupEdit); // Para debugging
-
-  if (butEdit && popupEdit) {
-    const butCloseEdit = popupEdit.querySelector(".popup__button_close");
-    const formEdit = popupEdit.querySelector(".popup__container");
-
-    const inName = document.querySelector(".profile__title");
-    const inAbout = document.querySelector(".profile__subtitle");
-
-    const inputName = document.querySelector(".popup__input_name");
-    const inputAbout = document.querySelector(".popup__input_about");
-
-    function openEdit() {
-      console.log("Abriendo popup de edición"); // Para debugging
-      inputName.value = inName.textContent;
-      inputAbout.value = inAbout.textContent;
-      popupEdit.classList.add("popup_opened");
-    }
-
-    function closeEdit() {
-      console.log("Cerrando popup de edición"); // Para debugging
-      popupEdit.classList.remove("popup_opened");
-    }
-
-    function saveChange(event) {
-      event.preventDefault();
-      console.log("Guardando cambios"); // Para debugging
-      inName.textContent = inputName.value;
-      inAbout.textContent = inputAbout.value;
-      closeEdit();
-    }
-
-    // Event listeners para popup de edición
-    butEdit.addEventListener("click", openEdit);
-    butCloseEdit.addEventListener("click", closeEdit);
-    formEdit.addEventListener("submit", saveChange);
-  }
-
-  // POPUP DE AGREGAR NUEVA TARJETA
-  const butAdd = document.querySelector(".profile__button-add");
-  const popupAdd = document.querySelector(".popup_add");
-
-  console.log("Botón agregar:", butAdd); // Para debugging
-  console.log("Popup agregar:", popupAdd); // Para debugging
-
-  if (butAdd && popupAdd) {
-    const butCloseAdd = popupAdd.querySelector(".popup__button_close");
-    const formAdd = popupAdd.querySelector(".popup__form-add");
-
-    const inputPlace = document.querySelector(".popup__input_place");
-    const inputLink = document.querySelector(".popup__input_link");
-
-    function openAdd() {
-      console.log("Abriendo popup de agregar"); // Para debugging
-      inputPlace.value = "";
-      inputLink.value = "";
-      popupAdd.classList.add("popup_opened");
-    }
-
-    function closeAdd() {
-      console.log("Cerrando popup de agregar"); // Para debugging
-      popupAdd.classList.remove("popup_opened");
-    }
-
-    function addNewCard(event) {
-      event.preventDefault();
-      console.log("Agregando nueva tarjeta"); // Para debugging
-
-      const newCardData = {
-        name: inputPlace.value,
-        link: inputLink.value
-      };
-
-      addCard(newCardData);
-      closeAdd();
-    }
-
-    // Event listeners para popup de agregar
-    butAdd.addEventListener("click", openAdd);
-    butCloseAdd.addEventListener("click", closeAdd);
-    formAdd.addEventListener("submit", addNewCard);
-  }
-
-  // POPUP DE IMAGEN AMPLIADA
-  const popupImage = document.querySelector(".popup_image");
-
-  console.log("Popup imagen:", popupImage); // Para debugging
-
-  if (popupImage) {
-    const butCloseImage = popupImage.querySelector(".popup__button_close");
-    const popupImageElement = popupImage.querySelector(".popup__image");
-    const popupImageCaption = popupImage.querySelector(".popup__image-caption");
-
-    function openImagePopup(imageSrc, imageAlt) {
-      console.log("Abriendo imagen ampliada"); // Para debugging
-      popupImageElement.src = imageSrc;
-      popupImageElement.alt = imageAlt;
-      popupImageCaption.textContent = imageAlt;
-      popupImage.classList.add("popup_opened");
-    }
-
-    function closeImagePopup() {
-      console.log("Cerrando imagen ampliada"); // Para debugging
-      popupImage.classList.remove("popup_opened");
-    }
-
-    // Event listener para cerrar popup de imagen
-    butCloseImage.addEventListener("click", closeImagePopup);
-
-    // Cerrar al hacer clic en el fondo oscuro
-    popupImage.addEventListener("click", function(event) {
-      if (event.target === popupImage) {
-        closeImagePopup();
-      }
-    });
-  }
 });

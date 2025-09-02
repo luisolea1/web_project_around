@@ -11,13 +11,23 @@
 </head>
 <body>
     <div class="page">
+      
+      <div class="popup">
+        <button class="popup__button popup__button_close popup__close-icon" type="button"></button>
 
 
-      <div class="popup popup_edit">
-        <button class="popup__button popup__button_close"></button>
+        <div class="popup__images">
+          <div class="popup__content-image">
+            <img class="popup__image" src="" alt="">
+          </div>
+          <div class="popup__paragraph-content">
+            <p class="popup__paragraph"></p>
+          </div>
+        </div>
+
 
         <form class="popup__container">
-          <p class="popup__subtitle">Editar perfil</p>
+          <p class="popup__subtitle"></p>
           <fieldset class="popup__content">
             <input type="text" class="popup__input popup__input_name" name="name" placeholder="Nombre" required/>
             <input type="text" class="popup__input popup__input_about" name="about" placeholder="Acerca de mí" required/>
@@ -25,69 +35,39 @@
 
           <fieldset class="popup__content">
             <button type="submit" class="popup__button popup__button_save">Guardar</button>
+            <button type="button" class="popup__button popup__button_add" disabled>Crear</button>
           </fieldset>
         </form>
       </div>
 
-      <div class="popup popup_add">
-        <button class="popup__button popup__button_close"></button>
+      <header class="header">
+        <img src="./images/Vector__Header.svg" alt="Around the U.S." class="header__image">
+      </header>
 
-        <form class="popup__container popup__form-add">
-          <p class="popup__subtitle">Nuevo lugar</p>
-          <fieldset class="popup__content">
-            <input type="text" class="popup__input popup__input_place" name="place" placeholder="Título" required/>
-            <input type="url" class="popup__input popup__input_link" name="link" placeholder="Enlace a la imagen" required/>
-          </fieldset>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__container-photo">
+            <img src="./images/profile__photo.jpg" alt="profile photo" class="profile__photo">
+          </div>
 
-          <fieldset class="popup__content">
-            <button type="submit" class="popup__button popup__button_save">Crear</button>
-          </fieldset>
-        </form>
-      </div>
+          <div class="profile__info">
+            <h1 class="profile__title">Jacques Cousteau</h1>
+            <button class="profile__button" type="button">
+              <img src="./images/Edit__Button.svg" alt="Edit Button" class="profile__button-edit">
+            </button>
+            <h2 class="profile__subtitle">Explorador</h2>
+          </div>
 
-      <div class="popup popup_image">
-        <div class="popup__image-container">
-          <button class="popup__button popup__button_close"></button>
-          <img class="popup__image" src="" alt="">
-          <p class="popup__image-caption"></p>
-        </div>
-      </div>
+          <button class="profile__button-add" type="button"></button>
+        </section>
 
-    <header class="header">
+        <section class="elements">
+        </section>
+      </main>
 
-      <img src="./images/Vector__Header.svg" alt="Around the U.S." class="header__image">
-
-    </header>
-
-    <main class="content">
-
-      <section class="profile">
-
-        <div class="profile__container-photo">
-          <img src="./images/profile__photo.jpg" alt="profile  photo" class="profile__photo">
-        </div>
-
-        <div class="profile__info">
-        <h1 class="profile__title">Jacques Cousteau</h1>
-
-        <button class="profile__button">
-          <img src="./images/Edit__Button.svg" alt="Edit Button" class="profile__button-edit">
-        </button>
-        <h2 class="profile__subtitle">Explorador</h2>
-        </div>
-
-        <button class="profile__button-add"></button>
-
-      </section>
-
-      <section class="elements">
-
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__text">© 2024 Around the U.S. by Luis Olea</p>
-
-    </footer>
+      <footer class="footer">
+        <p class="footer__text">© 2024 Around the U.S. by Luis Olea</p>
+      </footer>
     </div>
 
     <template id="element-template">
