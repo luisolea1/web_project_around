@@ -155,4 +155,9 @@
     width: 240px;
   }
 
+.popup__image{
+    max-width: 282px;
+
+  }
+
 }
