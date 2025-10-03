@@ -123,14 +123,20 @@ function toggleButtonState(inputList, buttonElement, config) {
 function setEventListeners(formElement, config) {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  const addButtonElement = formElement.querySelector(".popup__button_add");
 
-  // Desactiva el botón inicialmente
   toggleButtonState(inputList, buttonElement, config);
+  if (addButtonElement) {
+    toggleButtonState(inputList, addButtonElement, config);
+  }
 
   inputList.forEach(function(inputElement) {
     inputElement.addEventListener("input", function() {
       checkInputValidity(formElement, inputElement, config);
       toggleButtonState(inputList, buttonElement, config);
+      if (addButtonElement) {
+        toggleButtonState(inputList, addButtonElement, config);
+      }
     });
   });
 }
@@ -148,7 +154,7 @@ function enableValidation(config) {
   });
 }
 
-// FUNCIÓN OPCIONAL: Para resetear la validación
+// Función para resetear la validación
 function resetValidation(formElement, config) {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
