@@ -74,8 +74,8 @@ function getErrorMessage(inputElement, isURLField) {
 function checkInputValidity(formElement, inputElement, config) {
   const isAddMode = inputElement.placeholder === "Enlace a la imagen";
   const isURLField = isAddMode && inputElement.id === "profile-about-input";
-  let isValid = inputElement.validity.valid;
 
+  let isValid = inputElement.validity.valid;
   if (isURLField && inputElement.value !== "") {
     isValid = isValid && isValidURL(inputElement.value);
   }
@@ -84,7 +84,7 @@ function checkInputValidity(formElement, inputElement, config) {
     const errorMessage = getErrorMessage(inputElement, isURLField);
     showInputError(formElement, inputElement, errorMessage, config);
 
-    if (isURLField && !isValidURL(inputElement.value)) {
+    if (isURLField && inputElement.value !== "" && !isValidURL(inputElement.value)) {
       inputElement.setCustomValidity("URL inválida");
     }
   } else {

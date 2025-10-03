@@ -138,6 +138,9 @@ const validationConfig = {
   inputAbout.setAttribute("minlength", "2");
   inputAbout.setAttribute("maxlength", "200");
 
+  inputName.setCustomValidity("");
+  inputAbout.setCustomValidity("");
+
   resetValidation(popupContainer, validationConfig);
 
   popup.classList.add("popup_opened");
@@ -162,6 +165,9 @@ const validationConfig = {
   inputName.setAttribute("maxlength", "30");
   inputAbout.removeAttribute("minlength");
   inputAbout.removeAttribute("maxlength");
+
+  inputName.setCustomValidity("");
+  inputAbout.setCustomValidity("");
 
   resetValidation(popupContainer, validationConfig);
 
