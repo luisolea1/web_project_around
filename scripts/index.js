@@ -55,6 +55,15 @@ document.addEventListener("DOMContentLoaded", function() {
   const inputName = document.querySelector(".popup__input_name");
   const inputAbout = document.querySelector(".popup__input_about");
 
+const validationConfig = {
+  formSelector: ".popup__container",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button_save",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible"
+};
+
   function createCard(cardData) {
     const cardElement = elementTemplate.content.cloneNode(true);
     const cardImage = cardElement.querySelector(".element__image");
@@ -111,46 +120,54 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   function openEditPopup() {
-    console.log("Abriendo popup de edición");
+  console.log("Abriendo popup de edición");
 
+  popupContainer.style.display = "block";
+  popupImages.style.display = "none";
+  popupSaveButton.style.display = "block";
+  popupAddButton.style.display = "none";
 
-    popupContainer.style.display = "block";
-    popupImages.style.display = "none";
-    popupSaveButton.style.display = "block";
-    popupAddButton.style.display = "none";
+  popupTitle.textContent = "Editar perfil";
+  inputName.value = profileName.textContent;
+  inputAbout.value = profileAbout.textContent;
+  inputName.placeholder = "Nombre";
+  inputAbout.placeholder = "Acerca de mí";
 
-    popupTitle.textContent = "Editar perfil";
-    inputName.value = profileName.textContent;
-    inputAbout.value = profileAbout.textContent;
-    inputName.placeholder = "Nombre";
-    inputAbout.placeholder = "Acerca de mí";
+  // Restaurar atributos de validación para el modo "Editar perfil"
+  inputName.setAttribute("minlength", "2");
+  inputName.setAttribute("maxlength", "40");
+  inputAbout.setAttribute("minlength", "2");
+  inputAbout.setAttribute("maxlength", "200");
 
+  resetValidation(popupContainer, validationConfig);
 
-    popup.classList.add("popup_opened");
-  }
-
+  popup.classList.add("popup_opened");
+}
 
   function openAddPopup() {
-    console.log("Abriendo popup de agregar");
+  console.log("Abriendo popup de agregar");
 
+  popupContainer.style.display = "block";
+  popupImages.style.display = "none";
+  popupSaveButton.style.display = "none";
+  popupAddButton.style.display = "block";
 
-    popupContainer.style.display = "block";
-    popupImages.style.display = "none";
-    popupSaveButton.style.display = "none";
-    popupAddButton.style.display = "block";
+  popupTitle.textContent = "Nuevo lugar";
+  inputName.value = "";
+  inputAbout.value = "";
+  inputName.placeholder = "Título";
+  inputAbout.placeholder = "Enlace a la imagen";
 
+  
+  inputName.setAttribute("minlength", "2");
+  inputName.setAttribute("maxlength", "30");
+  inputAbout.removeAttribute("minlength");
+  inputAbout.removeAttribute("maxlength");
 
-    popupTitle.textContent = "Nuevo lugar";
-    inputName.value = "";
-    inputAbout.value = "";
-    inputName.placeholder = "Título";
-    inputAbout.placeholder = "Enlace a la imagen";
+  resetValidation(popupContainer, validationConfig);
 
-
-    validateAddButton();
-
-    popup.classList.add("popup_opened");
-  }
+  popup.classList.add("popup_opened");
+}
 
 
   function openImagePopup(imageSrc, imageAlt) {
@@ -180,14 +197,14 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 
-  function saveProfileChanges(event) {
-    event.preventDefault();
-    console.log("Guardando cambios del perfil");
+function saveProfileChanges(event) {
+  event.preventDefault();
+  console.log("Guardando cambios del perfil");
 
-    profileName.textContent = inputName.value;
-    profileAbout.textContent = inputAbout.value;
-    closePopup();
-  }
+  profileName.textContent = inputName.value;
+  profileAbout.textContent = inputAbout.value;
+  closePopup();
+}
 
 
   function addNewCard() {
@@ -224,19 +241,6 @@ document.addEventListener("DOMContentLoaded", function() {
   popupAddButton.addEventListener("click", addNewCard);
 
 
-  inputName.addEventListener("input", function() {
-    if (popupAddButton.style.display === "block") {
-      validateAddButton();
-    }
-  });
-
-  inputAbout.addEventListener("input", function() {
-    if (popupAddButton.style.display === "block") {
-      validateAddButton();
-    }
-  });
-
-
   popup.addEventListener("click", function(event) {
     if (event.target === popup) {
       closePopup();
@@ -252,6 +256,6 @@ document.addEventListener("DOMContentLoaded", function() {
     event.stopPropagation();
   });
 
-
+  enableValidation(validationConfig);
   initializeCards();
 });

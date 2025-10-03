@@ -15,7 +15,8 @@
       <div class="popup">
         <button class="popup__button popup__button_close popup__close-icon" type="button"></button>
 
-+
+
+
         <div class="popup__images">
           <div class="popup__content-image">
             <img class="popup__image" src="" alt="">
@@ -26,11 +27,14 @@
         </div>
 
 
-        <form class="popup__container">
+        <form class="popup__container" novalidate>
           <p class="popup__subtitle"></p>
           <fieldset class="popup__content">
-            <input type="text" class="popup__input popup__input_name" name="name" placeholder="Nombre" required/>
-            <input type="text" class="popup__input popup__input_about" name="about" placeholder="Acerca de mí" required/>
+            <input type="text" class="popup__input popup__input_name" id="profile-name-input" minlength="2" maxlength="40" placeholder="Nombre" required/>
+            <span class="popup__input_error profile-name__input_error"></span>
+
+            <input type="text" class="popup__input popup__input_about" id="profile-about-input" minlength="2" maxlength="200" placeholder="Acerca de mí" required/>
+            <span class="popup__input_error profile-about__input_error"></span>
           </fieldset>
 
           <fieldset class="popup__content">
@@ -80,7 +84,7 @@
         </div>
       </div>
     </template>
-
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
