@@ -1,5 +1,4 @@
 
-
 document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM cargado");
 
@@ -158,7 +157,7 @@ const validationConfig = {
   inputName.placeholder = "Título";
   inputAbout.placeholder = "Enlace a la imagen";
 
-  
+
   inputName.setAttribute("minlength", "2");
   inputName.setAttribute("maxlength", "30");
   inputAbout.removeAttribute("minlength");
@@ -185,7 +184,6 @@ const validationConfig = {
     popup.classList.add("popup_opened");
   }
 
-
   function closePopup() {
     console.log("Cerrando popup");
     popup.classList.remove("popup_opened");
@@ -196,7 +194,6 @@ const validationConfig = {
     }, 300);
   }
 
-
 function saveProfileChanges(event) {
   event.preventDefault();
   console.log("Guardando cambios del perfil");
@@ -205,7 +202,6 @@ function saveProfileChanges(event) {
   profileAbout.textContent = inputAbout.value;
   closePopup();
 }
-
 
   function addNewCard() {
     console.log("Agregando nueva tarjeta");
@@ -218,7 +214,6 @@ function saveProfileChanges(event) {
     addCard(newCardData, true);
     closePopup();
   }
-
 
   function validateAddButton() {
     const isValid = inputName.value.trim() !== "" && inputAbout.value.trim() !== "";

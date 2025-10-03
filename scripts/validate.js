@@ -1,8 +1,6 @@
 
 // Función para mostrar el error
 function showInputError(formElement, inputElement, errorMessage, config) {
-
-  // Construir el selector correctamente basado en el id del input
   let errorSelector;
   if (inputElement.id === "profile-name-input") {
     errorSelector = ".profile-name__input_error";
@@ -54,7 +52,6 @@ function getErrorMessage(inputElement, isURLField) {
     return "Por favor, rellena este campo.";
   }
 
-  // Si es el campo de URL y no es válida
   if (isURLField) {
     if (!isValidURL(inputElement.value) && inputElement.value !== "") {
       return "Por favor, introduce una dirección web válida.";
@@ -75,11 +72,8 @@ function getErrorMessage(inputElement, isURLField) {
 
 // Función para verificar si el input es válido
 function checkInputValidity(formElement, inputElement, config) {
-  // Determinar si estamos validando el campo de URL
   const isAddMode = inputElement.placeholder === "Enlace a la imagen";
   const isURLField = isAddMode && inputElement.id === "profile-about-input";
-
-  // Para el campo URL, validar con nuestra función personalizada
   let isValid = inputElement.validity.valid;
 
   if (isURLField && inputElement.value !== "") {
@@ -90,12 +84,10 @@ function checkInputValidity(formElement, inputElement, config) {
     const errorMessage = getErrorMessage(inputElement, isURLField);
     showInputError(formElement, inputElement, errorMessage, config);
 
-    // Marcar como inválido manualmente para el campo URL
     if (isURLField && !isValidURL(inputElement.value)) {
       inputElement.setCustomValidity("URL inválida");
     }
   } else {
-    // Limpiar validación personalizada
     inputElement.setCustomValidity("");
     hideInputError(formElement, inputElement, config);
   }
