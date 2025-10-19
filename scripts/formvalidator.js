@@ -11,7 +11,6 @@ export default class FormValidator {
     this._addButtonElement = this._formElement.querySelector(".popup__button_add");
   }
 
-  // Método privado: mostrar error
   _showInputError(inputElement, errorMessage) {
     let errorSelector;
 
@@ -30,7 +29,6 @@ export default class FormValidator {
     }
   }
 
-  // Método privado: ocultar error
   _hideInputError(inputElement) {
     let errorSelector;
 
@@ -49,7 +47,6 @@ export default class FormValidator {
     }
   }
 
-  // Método privado: verificar si es URL válida
   _isValidURL(string) {
     try {
       new URL(string);
@@ -59,7 +56,6 @@ export default class FormValidator {
     }
   }
 
-  // Método privado: obtener mensaje de error
   _getErrorMessage(inputElement, isURLField) {
     if (inputElement.validity.valueMissing) {
       return "Por favor, rellena este campo.";
@@ -82,7 +78,6 @@ export default class FormValidator {
     return inputElement.validationMessage;
   }
 
-  // verificar validez del input
   _checkInputValidity(inputElement) {
     const isAddMode = inputElement.placeholder === "Enlace a la imagen";
     const isURLField = isAddMode && inputElement.id === "profile-about-input";
@@ -106,14 +101,12 @@ export default class FormValidator {
     }
   }
 
-  // Método privado: verificar si hay inputs inválidos
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
-  // Método privado: cambiar estado del botón
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._config.inactiveButtonClass);
@@ -134,7 +127,6 @@ export default class FormValidator {
     }
   }
 
-  // Método privado: configurar listeners
   _setEventListeners() {
     this._toggleButtonState();
 
@@ -150,7 +142,6 @@ export default class FormValidator {
     });
   }
 
-  // Método público: resetear validación
   resetValidation() {
     this._inputList.forEach((inputElement) => {
       inputElement.setCustomValidity("");
@@ -160,7 +151,6 @@ export default class FormValidator {
     this._toggleButtonState();
   }
 
-  // Método público: habilitar validación
   enableValidation() {
     this._setEventListeners();
   }
