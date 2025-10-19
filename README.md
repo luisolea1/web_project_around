@@ -14,9 +14,12 @@ Este proyecto es una página web interactiva inspirada en el viaje de Jacques Co
 - **Interfaz moderna:** Uso de CSS Grid y Flexbox para una estructura limpia y ordenada.
 - **Buenas prácticas:** Código estructurado y organizado en carpetas para facilitar el mantenimiento.
 
-## Actualizaciónes 
+## Actualizaciónes
+
+- **Refactorización:** En esta ocasión el proyecto pasó por un proceso completo de refactorización para mejorar su estructura y mantenibilidad.
+- **Arquitectura del Código:** El proyecto utiliza una arquitectura modular basada en **Programación Orientada a Objetos (POO)**.
 - **Validación:** Nuestros forularios ahora se validan por medio de JavaScript, haciendo una validación orientada al cliente, viendo mensajes de error antes de enviar y manteniendo el boton de "Enviar" inactivo  cuando se abra una ventana emergente
-- **Comentarios:** En esta actialización se agregan comentarios en Validate.js para ayudar a comprender lo que realiza el codigo
+- **Comentarios:** En esta actialización se continuan agregando comentarios en archivos .js para ayudar a comprender lo que realiza el codigo.
 
 
 

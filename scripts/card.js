@@ -1,5 +1,3 @@
-// Card.js
-
 export default class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
