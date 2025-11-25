@@ -1,4 +1,3 @@
-
 import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
@@ -13,6 +12,6 @@ export default class PopupWithImage extends Popup {
     this._image.alt = name;
     this._caption.textContent = name;
 
-    super.open(); 
+    super.open();
   }
 }
