@@ -4,7 +4,9 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    this._form = this._popup.querySelector(".popup__container");
+    this._popupImages = this._popup.querySelector(".popup__images");
+    this._popupContainer = this._popup.querySelector(".popup__container");
+    this._form = this._popupContainer;
     this._inputList = this._form.querySelectorAll(".popup__input");
   }
 
@@ -14,6 +16,14 @@ export default class PopupWithForm extends Popup {
       formValues[input.name] = input.value;
     });
     return formValues;
+  }
+
+  open() {
+    // Mostrar el formulario y ocultar las imágenes
+    this._popupImages.style.display = "none";
+    this._popupContainer.style.display = "block";
+
+    super.open();
   }
 
   setEventListeners() {
