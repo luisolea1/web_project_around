@@ -16,11 +16,6 @@ const api = new Api({
 
 
 
-
-
-
-
-
 const validationConfig = {
   formSelector: ".popup__container",
   inputSelector: ".popup__input",
